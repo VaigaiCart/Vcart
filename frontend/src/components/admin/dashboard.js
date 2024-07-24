@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Sidebar from "./sidebar";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getAdminProducts } from "../../actions/productActions";
 import { adminOrders as adminOrdersAction } from "../../actions/orderActions";
 import { getUsers } from "../../actions/userActions";
@@ -11,7 +11,8 @@ export default function Dashboard(){
     const {users = []} = useSelector(state=>state.userState)
     const { adminOrders = [] } = useSelector(state => state.orderState);
 
-    
+    const [previousOrderCount, setPreviousOrderCount] = useState(0);
+    const audioRef = useRef(null);
     const dispatch = useDispatch();
     let outOfStock = 0;
 
@@ -33,7 +34,31 @@ export default function Dashboard(){
         dispatch(getAdminProducts)
         dispatch(adminOrdersAction);
         dispatch(getUsers);
+        const interval = setInterval(() => {
+            dispatch(adminOrdersAction);
+        }, 6000); // Check for new orders every 60 seconds
+
+        return () => clearInterval(interval);
     },[dispatch])
+
+    useEffect(() => {
+        if (adminOrders.length > previousOrderCount) {
+            const playAudio = async () => {
+                if (audioRef.current) {
+                    try {
+                        await audioRef.current.play();
+                    } catch (error) {
+                        console.log('Audio play failed:', error);
+                    }
+                }
+            };
+
+            playAudio();
+        }
+        setPreviousOrderCount(adminOrders.length);
+    }, [adminOrders]);
+
+   
 
 
     return(
@@ -41,8 +66,10 @@ export default function Dashboard(){
             <div className="col-12 col-md-2">
                 <Sidebar/>
             </div>
+            
             <div className="col-12 col-md-10">
             <h1 className="my-4">Dashboard</h1>
+            <audio ref={audioRef} src="/alarm.wav" />
                             <div className="row pr-4">
                                 <div className="col-xl-12 col-sm-12 mb-3">
                                     <div className="card text-white bg-primary o-hidden h-100">
