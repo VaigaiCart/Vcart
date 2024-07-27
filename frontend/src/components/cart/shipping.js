@@ -39,6 +39,12 @@ export default function Shipping() {
 
     const submitHandler = (e) => {
         e.preventDefault();
+        if (phoneNo.length !== 10) {
+            toast.error("Phone number must be 10 digits long", {
+                position: 'bottom-center'
+            });
+            return;
+        }
         dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country, state, nearbyPlace }));
         navigate("/order/confirm");
     };
