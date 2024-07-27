@@ -47,9 +47,7 @@ export default function Home() {
                             <Carousel.Item >
                                 <img className="carouselimg d-block w-100" src="/images/slider/img2.png" alt='slider img' height="550" width="500" />
                             </Carousel.Item>
-                            <Carousel.Item >
-                                <img className="carouselimg d-block w-100" src="/images/slider/sliderimg1.jpg" alt='slider img' height="550" width="500" />
-                            </Carousel.Item>
+                            
                         </Carousel>
                     </Fragment>
                     <Fragment >
