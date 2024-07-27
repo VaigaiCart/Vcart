@@ -59,8 +59,6 @@ export default function Login(){
                 onChange={e => setPassword(e.target.value)}
               />
             </div>
-
-            <Link to='/password/forgot' className="float-right mb-4">Forgot Password?</Link>
   
             <button
               id="login_button"
