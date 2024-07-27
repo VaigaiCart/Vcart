@@ -1015,6 +1015,12 @@ ul.CTAs a {
     height: 1.8rem; /* Adjusted avatar size in navigation */
     width: 1.8rem;
   }
+  .avatar-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+  }
 
   .logo{
     width: 100%;
