@@ -38,7 +38,7 @@ export default function Footer() {
                     <Col md={3} className="footer-section">
                         <h5>Follow Us</h5>
                         <div className="social-icons">
-                            <Link to="https://www.facebook.com/VaigaiCart" className="social-icon" aria-label="Facebook">
+                            <Link to="https://www.facebook.com/profile.php?id=61561908425530" className="social-icon" aria-label="Facebook">
                                 <i className="fa fa-facebook"></i>
                             </Link>
                             <Link to="https://www.instagram.com/vaigaicart.off" className="social-icon" aria-label="Instagram">
