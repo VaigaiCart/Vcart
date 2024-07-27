@@ -88,7 +88,7 @@ export default function Shipping() {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="postal_code_field">Postal Code</label>
+                            <label htmlFor="postal_code_field">Pin Code</label>
                             <input
                                 type="number"
                                 id="postal_code_field"
