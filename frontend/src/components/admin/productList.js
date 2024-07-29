@@ -1,14 +1,13 @@
 import { Fragment, useEffect } from "react";
 import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux";
 import { clearError, clearProductDeleted } from "../../slices/productSlice";
 import { deleteProduct, getAdminProducts } from "../../actions/productActions";
 import Loader from "../layouts/Loader";
 import { MDBDataTable } from "mdbreact";
 import { toast } from 'react-toastify';
 import Sidebar from "./sidebar";
-import { Link } from "react-router-dom"
-
+import { Link } from "react-router-dom";
 
 export default function ProductList() {
     const { products = [], loading = true, error } = useSelector(state => state.productsState);
@@ -34,22 +33,30 @@ export default function ProductList() {
                     sort: 'asc'
                 },
                 {
+                    label: 'MRP',
+                    field: 'mrp',
+                    sort: 'asc'
+                },
+                {
                     label: 'Stock',
                     field: 'stock',
                     sort: 'asc'
-                }, {
+                },
+                {
                     label: 'Action',
                     field: 'action',
                     sort: 'asc'
                 },
             ],
             rows: []
-        }
+        };
+
         products.forEach(product => {
             data.rows.push({
                 id: product._id,
                 name: product.name,
                 price: `₹ ${product.price}`,
+                mrp: `₹ ${product.mrp}`,
                 stock: product.stock,
                 action: (
                     <Fragment>
@@ -59,15 +66,16 @@ export default function ProductList() {
                         </Button>
                     </Fragment>
                 )
-            })
-        })
+            });
+        });
+
         return data;
-    }
+    };
 
     const deleteHandler = (e, id) => {
         e.target.disabled = true;
-        dispatch(deleteProduct(id))
-    }
+        dispatch(deleteProduct(id));
+    };
 
     useEffect(() => {
         if (error || productError) {
@@ -75,20 +83,21 @@ export default function ProductList() {
                 position: 'bottom-center',
                 type: 'error',
                 onOpen: () => { dispatch(clearError()) }
-            })
-            return
+            });
+            return;
         }
         if (isProductDeleted) {
-            toast('Product Deleted Succesfully!', {
+            toast('Product Deleted Successfully!', {
                 type: 'success',
                 position: 'bottom-center',
                 onOpen: () => dispatch(clearProductDeleted())
-            })
+            });
             return;
         }
 
-        dispatch(getAdminProducts)
-    }, [dispatch, error, isProductDeleted, productError])
+        dispatch(getAdminProducts);
+    }, [dispatch, error, isProductDeleted, productError]);
+
     return (
         <div className="row">
             <div className="col-12 col-md-2">
@@ -115,5 +124,5 @@ export default function ProductList() {
                 </Fragment>
             </div>
         </div>
-    )
+    );
 }
