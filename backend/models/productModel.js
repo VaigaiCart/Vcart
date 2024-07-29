@@ -12,6 +12,11 @@ const productSchema = new mongoose.Schema({
         required: true,
         default: 0.0
     },
+    mrp: {
+        type: Number,
+        required: [true, "Please enter product MRP"],
+        default: 0.0
+    },
     description: {
         type: String,
         required: [true, "Please enter product description"]
