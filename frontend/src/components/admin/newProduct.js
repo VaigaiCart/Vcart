@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 export default function NewProduct() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
+    const [mrp, setMrp] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [stock, setStock] = useState(0);
@@ -35,6 +36,7 @@ export default function NewProduct() {
         const errors = {};
         if (!name) errors.name = "Name is required";
         if (!price) errors.price = "Price is required";
+        if (!mrp) errors.mrp = "MRP is required";
         if (!description) errors.description = "Description is required";
         if (!category) errors.category = "Category is required";
         if (stock <= 0) errors.stock = "Stock must be greater than zero";
@@ -70,6 +72,7 @@ export default function NewProduct() {
         const formData = new FormData();
         formData.append('name', name);
         formData.append('price', price);
+        formData.append('mrp', mrp);
         formData.append('stock', stock);
         formData.append('description', description);
         formData.append('seller', seller);
@@ -134,6 +137,18 @@ export default function NewProduct() {
                                     value={price}
                                 />
                                 {formErrors.price && <p className="text-danger">{formErrors.price}</p>}
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="mrp_field">MRP</label>
+                                <input
+                                    type="text"
+                                    id="mrp_field"
+                                    className="form-control"
+                                    onChange={e => setMrp(e.target.value)}
+                                    value={mrp}
+                                />
+                                {formErrors.mrp && <p className="text-danger">{formErrors.mrp}</p>}
                             </div>
 
                             <div className="form-group">
