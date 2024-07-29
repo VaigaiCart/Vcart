@@ -13,7 +13,7 @@ export default function Product({product,col}){
                                 <h5 className="card-title">
                                     <Link to={`/product/${product._id}`}>{product.name}</Link>
                                 </h5>
-                                
+                                 <p > MRP: <s>₹ {product.mrp}</s></p>
                                 <p className="card-text">₹ {product.price}</p>
                                 <Link to={`/product/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
                             </div>
