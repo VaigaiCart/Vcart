@@ -106,7 +106,7 @@ export default function ProductDetail() {
                             <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
 
                             <hr />
-
+                             <p > MRP: <s>₹ {product.mrp}</s></p>
                             <p id="product_price">₹ {product.price}</p>
                             <p>Number of Stock: <strong>{product.stock}</strong></p>
                             <div className="stockCounter d-inline">
