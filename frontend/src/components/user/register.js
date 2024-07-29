@@ -4,7 +4,6 @@ import { register, clearAuthError } from '../../actions/userActions';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function Register(){
     const [userData, setUserData] = useState({
         name:"",
@@ -13,6 +12,7 @@ export default function Register(){
     });
     const [avatar, setAvatar] = useState("");
     const [avatarPreview, setAvatarPreview] = useState("/images/default_avatar.jpg");
+    const [passwordError, setPasswordError] = useState("");
     const dispatch = useDispatch();
     const {loading, error, isAuthenticated} = useSelector(state => state.authState);
     const navigate = useNavigate();
@@ -27,13 +27,33 @@ export default function Register(){
                 }
             }
             reader.readAsDataURL(e.target.files[0])
-        }else{
-        setUserData({...userData, [e.target.name]:e.target.value})
+        } else {
+            setUserData({...userData, [e.target.name]: e.target.value})
+
+            // Password validation
+            if (e.target.name === 'password') {
+                const password = e.target.value;
+                const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    setPasswordError("Password must be at least 8 characters long, contain one uppercase letter, one number, and one special character.");
+                } else {
+                    setPasswordError("");
+                }
+            }
         }
     }
 
     const submitHandler = (e) =>{
         e.preventDefault();
+        
+        if (passwordError) {
+            toast(passwordError, {
+                position: 'bottom-center',
+                type: 'error',
+            });
+            return;
+        }
+
         const formData = new FormData();
         formData.append('name', userData.name)
         formData.append('email', userData.email)
@@ -54,78 +74,80 @@ export default function Register(){
               onOpen: () => {dispatch(clearAuthError)}
             })
             return
-    }
+        }
     },[error, isAuthenticated, dispatch, navigate])
+
     return(
         <div className="row wrapper">
-		<div className="col-10 col-lg-5">
-        <form onSubmit={submitHandler} className="shadow-lg" encType='multipart/form-data'>
-            <h1 className="loginheading mb-3">Register</h1>
+            <div className="col-10 col-lg-5">
+                <form onSubmit={submitHandler} className="shadow-lg" encType='multipart/form-data'>
+                    <h1 className="loginheading mb-3">Register</h1>
 
-          <div className="form-group">
-            <label htmlFor="email_field">Name</label>
-            <input name='name' onChange={onChange} type="name" id="name_field" className="form-control" />
-          </div>
+                    <div className="form-group">
+                        <label htmlFor="name_field">Name</label>
+                        <input name='name' onChange={onChange} type="name" id="name_field" className="form-control" />
+                    </div>
 
-            <div className="form-group">
-              <label htmlFor="email_field">Email</label>
-              <input
-                type="email"
-                id="email_field"
-                className="form-control"
-                name='email'
-                onChange={onChange}
-              />
+                    <div className="form-group">
+                        <label htmlFor="email_field">Email</label>
+                        <input
+                            type="email"
+                            id="email_field"
+                            className="form-control"
+                            name='email'
+                            onChange={onChange}
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password_field">Password</label>
+                        <input
+                            type="password"
+                            id="password_field"
+                            className="form-control"
+                            name='password' 
+                            onChange={onChange}
+                        />
+                        {passwordError && <small className="text-danger">{passwordError}</small>}
+                    </div>
+
+                    <div className='form-group'>
+                        <label htmlFor='avatar_upload'>Avatar</label>
+                        <div className='d-flex align-items-center'>
+                            <div>
+                                <figure className='avatar mr-3 item-rtl'>
+                                    <img
+                                        src={avatarPreview}
+                                        className='rounded-circle'
+                                        alt='avatar'
+                                    />
+                                </figure>
+                            </div>
+                            <div className='custom-file'>
+                                <input
+                                    type='file'
+                                    name='avatar'
+                                    onChange={onChange}
+                                    className='custom-file-input'
+                                    id='customFile'
+                                />
+                                <label className='custom-file-label' htmlFor='customFile'>
+                                    Choose Avatar
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button
+                        id="register_button"
+                        type="submit"
+                        className="btn btn-block py-3"
+                        disabled={loading}
+                    >
+                        REGISTER
+                    </button>
+                </form>
             </div>
-  
-            <div className="form-group">
-              <label htmlFor="password_field">Password</label>
-              <input
-                type="password"
-                id="password_field"
-                className="form-control"
-                name='password' 
-                onChange={onChange}
-              />
-            </div>
-
-            <div className='form-group'>
-              <label htmlFor='avatar_upload'>Avatar</label>
-              <div className='d-flex align-items-center'>
-                  <div>
-                      <figure className='avatar mr-3 item-rtl'>
-                          <img
-                              src={avatarPreview}
-                              className='rounded-circle'
-                              alt='avatar'
-                          />
-                      </figure>
-                  </div>
-                  <div className='custom-file'>
-                      <input
-                          type='file'
-                          name='avatar'
-                          onChange={onChange}
-                          className='custom-file-input'
-                          id='customFile'
-                      />
-                      <label className='custom-file-label' htmlFor='customFile'>
-                          Choose Avatar
-                      </label>
-                  </div>
-              </div>
-          </div>
-  
-            <button
-              id="register_button"
-              type="submit"
-              className="btn btn-block py-3"
-              disabled={loading}
-            >
-              REGISTER
-            </button>
-          </form>
-		  </div>
-    </div>
+        </div>
     )
 }
