@@ -10,7 +10,7 @@ export default function ConfirmOrder() {
     const { user } = useSelector(state => state.authState);
     const navigate = useNavigate();
     const itemsPrice = cartItems.reduce((acc, item) => (acc + item.price * item.quantity), 0);
-    const shippingPrice = itemsPrice > 1000 ? 0 : 29;
+    const shippingPrice = 0;
     const totalPrice = Number(itemsPrice + shippingPrice).toFixed(2);
 
     const processPayment = () => {
