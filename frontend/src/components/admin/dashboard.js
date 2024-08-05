@@ -36,7 +36,7 @@ export default function Dashboard(){
         dispatch(getUsers);
         const interval = setInterval(() => {
             dispatch(adminOrdersAction);
-        }, 6000); // Check for new orders every 60 seconds
+        }, 1000); // Check for new orders every 60 seconds
 
         return () => clearInterval(interval);
     },[dispatch])
