@@ -40,7 +40,7 @@ import UserList from './components/admin/userList';
 import UpdateUser from './components/admin/updateUser';
 import ReviewList from './components/admin/reviewList';
 import CategoryProducts from './components/product/categoryProducts';
-import ScrollToTop from './scrollup';
+
 
 function App() {
 
@@ -52,7 +52,7 @@ function App() {
     <Router>
       <div className="App">
         <HelmetProvider>
-        <ScrollToTop/>
+     
           <Header />
           
           <div className='container container-fluid'>
