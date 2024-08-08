@@ -26,7 +26,7 @@ export default function NewProduct() {
         'Meats',
         'Spices Masalas',
         'House Holds',
-        'Beverages'
+        'Dals'
     ];
 
     const navigate = useNavigate();
