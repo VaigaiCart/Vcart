@@ -91,15 +91,15 @@ export default function Home() {
                                 <h3>Spices&Masalas</h3>
                                 <button onClick={() => handleCategoryClick('Spices Masalas')}>View All</button>
                             </div>
+                          <div className="category-box">
+                            <img src="/images/categories/tea.jpg" alt="Ghee Oils" width="200" height="200"/>
+                                <h3>Ghee & Oils</h3>
+                                <button onClick={() => handleCategoryClick('Ghee Oils')}>View All</button>
+                            </div>
                             <div className="category-box">
                             <img src="/images/categories/meat.webp" alt="Meats" width="200" height="200"/>
                                 <h3>Meats</h3>
                                 <button onClick={() => handleCategoryClick('Meats')}>View All</button>
-                            </div>
-                            <div className="category-box">
-                            <img src="/images/categories/tea.jpg" alt="Tea Coffee" width="200" height="200"/>
-                                <h3>Tea & Coffee</h3>
-                                <button onClick={() => handleCategoryClick('Tea Coffee')}>View All</button>
                             </div>
                             <div className="category-box">
                             <img src="/images/categories/access.webp" alt="House Holds" width="200" height="200"/>
