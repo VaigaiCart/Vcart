@@ -39,7 +39,7 @@ const productSchema = new mongoose.Schema({
         enum: {
             values: [
                 'Groceries',
-                'Tea Coffee',
+                'Ghee Oils',
                 'Meats',
                 'Spices Masalas',
                 'House Holds',
