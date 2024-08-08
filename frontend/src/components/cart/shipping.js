@@ -33,7 +33,7 @@ export default function Shipping() {
     const [country, setCountry] = useState(shippingInfo.country);
     const [state, setState] = useState(shippingInfo.state);
     const [nearbyPlace, setNearbyPlace] = useState(shippingInfo.nearbyPlace);
-    const countryList = Object.values(countries);
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -94,7 +94,7 @@ export default function Shipping() {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="postal_code_field">Pin Code</label>
+                            <label htmlFor="postal_code_field">Postal Code</label>
                             <input
                                 type="number"
                                 id="postal_code_field"
@@ -104,24 +104,17 @@ export default function Shipping() {
                                 required
                             />
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="country_field">Country</label>
-                            <select
+                            <input
+                                type="text"
                                 id="country_field"
                                 className="form-control"
                                 value={country}
                                 onChange={(e) => setCountry(e.target.value)}
                                 required
-                            >
-                                {countryList.map((country, i) => (
-                                    <option key={i} value={country.name}>
-                                        {country.name}
-                                    </option>
-                                ))}
-                            </select>
+                            />
                         </div>
-
                         <div className="form-group">
                             <label htmlFor="state_field">State</label>
                             <input
