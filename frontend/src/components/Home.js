@@ -91,8 +91,8 @@ export default function Home() {
                                 <h3>Spices&Masalas</h3>
                                 <button onClick={() => handleCategoryClick('Spices Masalas')}>View All</button>
                             </div>
-                          <div className="category-box">
-                            <img src="/images/categories/tea.jpg" alt="Ghee Oils" width="200" height="200"/>
+                            <div className="category-box">
+                            <img src="/images/categories/ghee&oil.webp" alt="Ghee Oils" width="200" height="200"/>
                                 <h3>Ghee & Oils</h3>
                                 <button onClick={() => handleCategoryClick('Ghee Oils')}>View All</button>
                             </div>
@@ -102,15 +102,16 @@ export default function Home() {
                                 <button onClick={() => handleCategoryClick('Meats')}>View All</button>
                             </div>
                             <div className="category-box">
+                            <img src="/images/categories/dal.webp" alt="Dals" width="200" height="200"/>
+                                <h3>Dals</h3>
+                                <button onClick={() => handleCategoryClick('Dals')}>View All</button>
+                            </div>
+                            <div className="category-box">
                             <img src="/images/categories/access.webp" alt="House Holds" width="200" height="200"/>
                                 <h3>Accessories</h3>
                                 <button onClick={() => handleCategoryClick('House Holds')}>View All</button>
                             </div>
-                            <div className="category-box">
-                            <img src="/images/categories/beverages.avif" alt="Beverages" width="200" height="200"/>
-                                <h3>Beverages</h3>
-                                <button onClick={() => handleCategoryClick('Beverages')}>View All</button>
-                            </div>
+                            
                         </div>
                         
                     </Fragment>
