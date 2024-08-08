@@ -102,9 +102,9 @@ export default function Home() {
                                 <button onClick={() => handleCategoryClick('Meats')}>View All</button>
                             </div>
                             <div className="category-box">
-                            <img src="/images/categories/dal.webp" alt="Dals" width="200" height="200"/>
-                                <h3>Dals</h3>
-                                <button onClick={() => handleCategoryClick('Dals')}>View All</button>
+                            <img src="/images/categories/dal.webp" alt="Dals Nuts" width="200" height="200"/>
+                                <h3>Dals & Nuts</h3>
+                                <button onClick={() => handleCategoryClick('Dals Nuts')}>View All</button>
                             </div>
                             <div className="category-box">
                             <img src="/images/categories/access.webp" alt="House Holds" width="200" height="200"/>
