@@ -22,7 +22,7 @@ export default function NewProduct() {
 
     const categories = [
         'Groceries',
-        'Tea Coffee',
+        'Ghee Oils',
         'Meats',
         'Spices Masalas',
         'House Holds',
