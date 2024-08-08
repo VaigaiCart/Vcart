@@ -43,7 +43,7 @@ const productSchema = new mongoose.Schema({
                 'Meats',
                 'Spices Masalas',
                 'House Holds',
-                'Dals'
+                'Dals Nuts'
             ],
             message : "Please select correct category"
         }
